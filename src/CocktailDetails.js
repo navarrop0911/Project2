@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 // import {CocktailContext} from './CocktailContext';
 import styled from 'styled-components';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import SearchBar from './SearchBar'
 
 const Ingredients=styled.div`
@@ -10,12 +10,13 @@ const Ingredients=styled.div`
 `
 
 const Image =styled.img`
+  border: 4px solid white;
   border-radius: 50px;`
 
 const DetailsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  background-color: rgba(196, 164, 132, 0.8);
+  background-color: rgba(0, 0, 0, 0);
   `
 const Block1 = styled.div`
   display: flex;
@@ -37,13 +38,35 @@ const Block2 = styled.div`
 const SubBlock = styled.div`
   display: flex;
   flex-direction: column;
-  border: solid black 2px;
+  border: solid white 4px;
+  border-radius: 10px;
   padding: 1%;
   font-size: 20px;
   `
+  const Header = styled.header`
+  position: fixed;
+  background-color: transparent;
+  text-align: left;
+  padding: 10px`
 
+  const Button = styled.button`
+  color:white;
+  background-color: rgba(0, 0, 0, 0);
+  border: 4px solid white;
+  border-radius: 20px;
+`
+
+const Background = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-size: cover;
+  filter: blur(30px);
+`
 
 const CocktailDetails = () => {
+  document.body.style.color = "white"
   const idNumber= useParams();
   const idArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
@@ -61,7 +84,12 @@ const CocktailDetails = () => {
 
 return(
   <>
-  <SearchBar></SearchBar>
+  <Background style={{'backgroundImage':`url("${cocktailDetails.strDrinkThumb}")`}}/>
+  <Header>
+  <Link to="/">
+    <Button>Back to Home</Button>
+  </Link>
+  </Header>
   <DetailsContainer>
     <Block1>
       <h1>{cocktailDetails.strDrink}</h1>
