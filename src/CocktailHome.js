@@ -42,7 +42,7 @@ const CocktailHome = () => {
             return(
             <DrinkUnit key={index}>
               <Link to={`/id/${drink.idDrink}`}>
-                <DrinkImage src={drink.strDrinkThumb} alt="missing image"/>
+                <DrinkImage src={drink.strDrinkThumb} alt={drink.strDrink}/>
               </Link>
                 <p>{drink.strDrink}</p>
             </DrinkUnit>

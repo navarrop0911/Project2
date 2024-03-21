@@ -47,12 +47,12 @@ const CocktailDetails = () => {
   const idNumber= useParams();
   const idArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
-  console.log(idNumber.idnumber)
+  //console.log(idNumber.idnumber)
   // const navigate = useNavigate();
   const [cocktailDetails, setCocktailDetails] = useState([])
 
   useEffect(() => {
-    {console.log("Entering useEffect")}
+    //{console.log("Entering useEffect")}
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idNumber.idnumber}`)
     .then(res =>res.json())
     .then(data => setCocktailDetails(data.drinks[0]))
