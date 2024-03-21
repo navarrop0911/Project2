@@ -9,6 +9,7 @@ const SearchBar = () => {
 
   return(
     <Header>
+      <h1>Hi Team</h1>
       {/* <p>Drinks</p> */}
     </Header>
   )
