@@ -70,7 +70,7 @@ const CocktailDetails = () => {
   document.body.style.color = "white"
   const idNumber= useParams();
 
-  console.log(idNumber.idnumber)
+  //console.log(idNumber.idnumber)
   // const navigate = useNavigate();
   const [cocktailDetails, setCocktailDetails] = useState([])
 
