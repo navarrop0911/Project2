@@ -57,7 +57,7 @@ const SearchBar = () => {
                   fetch(search ? `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}` : "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
                   .then(response => response.json())
                   .then(data => search ? data.drinks : data.drinks.slice(0, maxCocktails))
-                  .then(limitedData => limitedData.length ? setCocktailList(limitedData) : alert(`No drinks found for query "${search}"`))
+                  .then(limitedData => limitedData ? setCocktailList(limitedData) : alert(`No drinks found for query "${search}"`))
                   .catch(error => console.error('Error: ', error))
                 }}>Search</Button>
         </nav>
