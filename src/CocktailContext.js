@@ -1,23 +1,16 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const CocktailContext = createContext();
 
 export const CocktailProvider = ({children}) => {
   const [cocktailList, setCocktailList] = useState([]);
   const [idNumber, setIdNumber] = useState(0);
+  const [nonAlcoholic, setNonAlcoholic] = useState(false);
   // const [limitedCocktails, setLimitedCocktails] = useState([]);
-  const maxCocktails = 20;
-
-  useEffect(() => {
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
-      .then(response => response.json())
-      .then(data => data.drinks.slice(0, maxCocktails))
-      .then(limitedData => setCocktailList(limitedData))
-      .catch(error => console.error('Error: ', error))
-  }, []);
+  const maxCocktails = 30;
 
   return(
-    <CocktailContext.Provider value={{cocktailList, setCocktailList, idNumber, setIdNumber}}>
+    <CocktailContext.Provider value={{cocktailList, setCocktailList, idNumber, setIdNumber, maxCocktails, nonAlcoholic, setNonAlcoholic}}>
       {children}
     </CocktailContext.Provider>
   )
