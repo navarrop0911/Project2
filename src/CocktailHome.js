@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 
 const DrinkContainer = styled.div`
+font-family: 'Candara';
 padding-top: 150px;
 display: flex;
 flex-direction: row;
@@ -31,12 +32,6 @@ padding: 10px;
 font-size: large;
 `
 
-const Button = styled.button`
-  margin-top: 4px;
-  border: 4px solid white;
-  border-radius: 20px;
-`
-
 const Background = styled.div`
   position: fixed;
   width: 100vw;
@@ -49,7 +44,7 @@ const Background = styled.div`
 
 const CocktailHome = () => {
   document.body.style.color = "white"
-    const {maxCocktails, cocktailList, setCocktailList, nonAlcoholic, setNonAlcoholic} = useContext(CocktailContext);
+    const {maxCocktails, cocktailList, setCocktailList, nonAlcoholic} = useContext(CocktailContext);
     React.useEffect(() => {
       fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?${nonAlcoholic ? 'a=Non_Alcoholic' : 'c=Cocktail'}`)
       .then(response => response.json())

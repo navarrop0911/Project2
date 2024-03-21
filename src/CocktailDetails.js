@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 // import {CocktailContext} from './CocktailContext';
 import styled from 'styled-components';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import SearchBar from './SearchBar'
+import { useParams, Link } from 'react-router-dom';
 
 const Ingredients=styled.div`
   display: flex;
@@ -14,6 +13,7 @@ const Image =styled.img`
   border-radius: 50px;`
 
 const DetailsContainer = styled.div`
+font-family: 'Candara';
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   background-color: rgba(0, 0, 0, 0);
@@ -44,6 +44,7 @@ const SubBlock = styled.div`
   font-size: 20px;
   `
   const Header = styled.header`
+  font-family: 'Candara';
   position: fixed;
   background-color: transparent;
   text-align: left;
@@ -62,25 +63,23 @@ const Background = styled.div`
   height: 100vh;
   z-index: -1;
   background-size: cover;
-  filter: blur(30px);
+  filter: blur(30px) brightness(50%);
 `
 
 const CocktailDetails = () => {
   document.body.style.color = "white"
   const idNumber= useParams();
-  const idArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   console.log(idNumber.idnumber)
   // const navigate = useNavigate();
   const [cocktailDetails, setCocktailDetails] = useState([])
 
   useEffect(() => {
-    {console.log("Entering useEffect")}
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idNumber.idnumber}`)
     .then(res =>res.json())
     .then(data => setCocktailDetails(data.drinks[0]))
     .catch(error => console.error('Error: ', error))
-  }, []);
+  }, [idNumber.idnumber]);
 
 return(
   <>
