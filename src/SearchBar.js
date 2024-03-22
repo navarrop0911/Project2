@@ -68,7 +68,7 @@ const SearchBar = () => {
   let {setCocktailList, maxCocktails, nonAlcoholic, setNonAlcoholic} = React.useContext(CocktailContext)
   return(
     <Header>
-      <h1 style={{'margin-bottom':'-4px'}}>Drinks</h1>
+      <h1 style={{'marginBottom':'-4px'}}>Drinks</h1>
         <nav>
                 <Search type="text" placeholder="Search" aria-label="Search" onKeyUp={event => {
                   if(event.key === "Enter"){
