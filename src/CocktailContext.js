@@ -6,11 +6,12 @@ export const CocktailProvider = ({children}) => {
   const [cocktailList, setCocktailList] = useState([]);
   const [idNumber, setIdNumber] = useState(0);
   const [nonAlcoholic, setNonAlcoholic] = useState(false);
+  const[randomDrink, setRandomDrink] = useState([])
   // const [limitedCocktails, setLimitedCocktails] = useState([]);
   const maxCocktails = 30;
 
   return(
-    <CocktailContext.Provider value={{cocktailList, setCocktailList, idNumber, setIdNumber, maxCocktails, nonAlcoholic, setNonAlcoholic}}>
+    <CocktailContext.Provider value={{cocktailList, setCocktailList, idNumber, setIdNumber, maxCocktails, nonAlcoholic, setNonAlcoholic, randomDrink, setRandomDrink}}>
       {children}
     </CocktailContext.Provider>
   )
