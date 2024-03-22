@@ -2,8 +2,15 @@ import React from 'react'
 import { render, screen, waitFor, waitForElementToBeRemoved, within, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import App from './App';
-import { rest } from 'msw';
+import CocktailHome from './CocktailHome';
 import { setupServer } from 'msw/node';
+import { handlers } from './mocks/handlers';
+import { filterHandlers } from './mocks/filterHandlers';
+//import { rest } from 'msw';
+//npm install msw@v1.3.3
+// import { detailsHanders } from './mock/handlers';
+
+// console.log(handlers);
 
 test("user should see header with title and search bar", () => {
   render(<App />);
@@ -13,176 +20,18 @@ test("user should see header with title and search bar", () => {
   expect(drinkSearch).toBeInTheDocument();
 })
 
-let idNum = 15346;
-let search = 'Margarita';
-const server = setupServer(
-  rest.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail', (req, res, ctx) => {
+// let idNum = 15346;
+// let search = 'Margarita';
+// let nonAlcoholic = false;
+// let entry = 0;
 
-  return res(ctx.json( {"drinks" : [
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "155 Belmont"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita2"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita3"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita4"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita5"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita6"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita7"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita8"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita9"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita10"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita11"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita12"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita13"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita14"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita15"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita16"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita17"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita18"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita19"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/i9suxb1582474926.jpg",
-      strDrink: "Margarita20"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita21"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita22"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita23"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita24"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita25"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita26"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita27"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita28"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita29"
-    },
-    {
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-      strDrink: "Margarita30"
-    }
-  ]}))
-}),
-  rest.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idNum}`, (req, res, ctx) => {
-    return res(ctx.json(  {"drinks" : [
-      {
-        strDrink: "Margarita30",
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-        strAlcoholic: "Alcoholic",
-        strInstructions: "Drink it",
-        strIngredient1: "water",
-        strIngredient2: "more water",
-        strMeasure1: "1 motherload",
-        strMeasure2: "fist-full"
-      }
-    ]})
-  )}),
-  rest.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`, (req, res, ctx) => {
-    return res(ctx.json({"drinks" : [
-      {
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-        strDrink: "Margarita1"
-      },
-      {
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-        strDrink: "Margarita2"
-      },
-      {
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-        strDrink: "Margarita3"
-      },
-      {
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-        strDrink: "Margarita4"
-      },
-      {
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg",
-        strDrink: "Margarita5"
-      }
-    ]}))
-  }
-    )
-)
+const server = setupServer(...handlers)
 
 beforeAll(() => server.listen());
+// beforeEach(() => {
+//   delete window.location;
+//   window.location = new URL('http://localhost:3000/');
+// })
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
@@ -200,10 +49,10 @@ test('user should see cocktails with names at home', async () => {
 test('user should see the details including name, type, ingredients, and instructions', async () => {
   render(<App/>)
     const drinkImg = await screen.findByAltText("155 Belmont")
-    await act(async() => {
+    await act(async () => {
       userEvent.click(drinkImg)
     })
-    await waitFor(() => screen.getByText('Margarita30'))
+    await screen.findByText('Margarita30')
     const drinkName = screen.getByText('Margarita30')
     const drinkPic = screen.getByAltText("No Image Found")
     const drinkType = screen.getByText('Alcoholic')
@@ -233,7 +82,35 @@ test('user should be able to go back to the home page after viewing drink detail
 test('user should be able to search for drinks and see corresponding filtered results', async () => {
   render(<App />)
   let drinkSearch = screen.getByRole('button', {name: 'Search'});
-  userEvent.type(screen.getByRole('textbox'), 'Margarita')
-  expect(drinkSearch).toBeInTheDocument();
+  userEvent.type(screen.getByRole('textbox'), 'Margarita');
+  await act(async() => {userEvent.click(drinkSearch) });
+  await waitFor(() => screen.getByText('Margarita5'));
+  const drinkName = screen.getByText("Margarita2")
+  const drinkPic = screen.getByAltText("Margarita3");
+  const drinkArray = screen.getAllByRole('img')
   expect(screen.getByRole('textbox')).toHaveValue('Margarita')
+  expect(drinkName).toBeInTheDocument();
+  expect(drinkPic.src).toContain("https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg");
+  expect(drinkArray.length).toBe(5);
+  expect(drinkSearch).toBeInTheDocument();
 })
+
+
+test('user should only see non-alcoholic drinks when selecting the Non-alcoholic filter', async () => {
+  server.resetHandlers(filterHandlers);
+  render(<App />)
+  let nonAlcButton = screen.getByRole('button', {name: 'Show Non-Alcoholic'});
+  // let alcButton = screen.getByRole('button', {name: 'Show Alcoholic'});
+  act(() => {userEvent.click(nonAlcButton) });
+  let alcButton = screen.getByRole('button', {name: 'Show Alcoholic'});
+  console.log(alcButton);
+  // act(() => {userEvent.click(nonAlcButton) });
+  // let nonAlcButton2 = screen.getByRole('button', {name: 'Show Non-Alcoholic'});
+  // render(<App />)
+  // await screen.findByText('Virgin Strawberry Daiquiri');
+  // expect(nonAlcButton).toBeInTheDocument();
+  expect(alcButton).toBeInTheDocument();
+  expect(nonAlcButton).toBeInTheDocument();
+  expect(nonAlcButton.compareDocumentPosition(alcButton)).toBe(0);
+})
+
