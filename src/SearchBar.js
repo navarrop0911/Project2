@@ -89,11 +89,11 @@ const SearchBar = () => {
         setNonAlcoholic(!nonAlcoholic)
       }}>Show {nonAlcoholic ? "Alcoholic" : "Non-Alcoholic"}</Button2>
       <Button3 type="button" onClick={() => {
-        navigate('/id/' + fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
         .then(response => response.json())
-        .then (data => data.drinks[0].idDrink)
-        .catch(error => console.error('Error: ', error)))
-        }}>Random Drink</Button3>
+        .then (data => navigate(`/id/${data.drinks[0].idDrink}`))
+        .catch(error => console.error('Error: ', error))
+      }}>Random Drink</Button3>
     </Header>
   )
 }
