@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { CocktailContext } from './CocktailContext'
+
+
 
 const Header = styled.header`
   font-family: 'Candara';
@@ -26,8 +28,16 @@ const Button2 = styled.button`
   margin-bottom: 4px;
   background-color: rgba(0, 0, 0, 0);
   border: 4px solid white;
-  border-radius: 20px;
-`
+  border-radius: 20px;`
+
+  const Button3 = styled.button`
+color: white;
+margin-top: 10px;
+margin-bottom: 10px;
+margin-left: 4px;
+background-color: rgba(0, 0, 0, 0);
+border: 4px solid white;
+border-radius: 20px;`
 
 const Search = styled.input`
   color: white;
@@ -39,6 +49,19 @@ const Search = styled.input`
   border-bottom-right-radius: 0px;
   border-top-right-radius: 0px;
   `
+
+  const RandomDrink = () => {
+    let { randomDrink, setRandomDrink} = React.useContext(CocktailContext);
+
+    useEffect(() => {
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+    .then(response => response.json())
+    .then (data => setRandomDrink(data.drinks[0]))
+    // . then(console.log(randomDrink))
+    .catch(error => console.error('Error: ', error))
+  }, [setRandomDrink]);
+
+  }
 
 const SearchBar = () => {
   const navigate = useNavigate()
@@ -65,6 +88,7 @@ const SearchBar = () => {
         navigate(nonAlcoholic ? "/" : "/non-alcoholic")
         setNonAlcoholic(!nonAlcoholic)
       }}>Show {nonAlcoholic ? "Alcoholic" : "Non-Alcoholic"}</Button2>
+      <Button3 type="button" onClick={() => navigate('/randomdrink')}>Random Drink</Button3>
     </Header>
   )
 }
