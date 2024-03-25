@@ -3,13 +3,17 @@
 This site will allow a user to search cocktails by name, by what type of drink it is, and a random drink. Clicking on a drink will display a details page for the drink, displaying its name, image, drink type, ingredients, and instructions for making it.
 
 ### Drink Site Requirements
-
+<div>
 The drinks site requires the installation of:
+<ul>
+<ol>
 -React
 -Bootstrap
 -React-Router-Dom
 -Styled-Components
-
+</ol>
+</ul>
+</div>
 ### Testing
 
 Testing is available to see if:
