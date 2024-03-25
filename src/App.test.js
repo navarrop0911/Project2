@@ -97,7 +97,7 @@ test('user should be able to search for drinks and see corresponding filtered re
 
 
 test('user should only see non-alcoholic drinks when selecting the Non-alcoholic filter', async () => {
-  server.resetHandlers(filterHandlers);
+  //server.resetHandlers(filterHandlers);
   render(<App />)
   let nonAlcButton = screen.getByRole('button', {name: 'Show Non-Alcoholic'});
   // let alcButton = screen.getByRole('button', {name: 'Show Alcoholic'});
@@ -114,3 +114,19 @@ test('user should only see non-alcoholic drinks when selecting the Non-alcoholic
   expect(nonAlcButton.compareDocumentPosition(alcButton)).toBe(0);
 })
 
+test('use should see a details page after clicking the random drink button', async () => {
+  //server.resetHandlers(handlers)
+  render(<App/>)
+  let ranButton = screen.getByRole('button', {name: 'Random Drink'});
+  act(() => {userEvent.click(ranButton)});
+  let ranDetails = await screen.findByText("Type:")
+  let ranDetails2 = await screen.findByText("Ingredients:")
+  let ranDetails3 = await screen.findByText("Instructions:")
+  let contents = ranDetails.innerHTML
+  let contents2 = ranDetails2.innerHTML
+  let contents3 = ranDetails3.innerHTML
+  expect(contents).toBe('Type:')
+  expect(contents2).toBe('Ingredients:')
+  expect(contents3).toBe('Instructions:')
+})
+//
