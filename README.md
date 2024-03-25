@@ -5,14 +5,12 @@ This site will allow a user to search cocktails by name, by what type of drink i
 ### Drink Site Requirements
 
 The drinks site requires the installation of:
-<ul>
 <ol>
 <p>--React</p>
 <p>--Bootstrap</p>
 <p>--React-Router-Dom</p>
 <p>--Styled-Components</p>
 </ol>
-</ul>
 
 ### Testing
 
